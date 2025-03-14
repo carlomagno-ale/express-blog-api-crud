@@ -26,5 +26,6 @@ module.exports = {
     show,
     store,
     update,
+    modify,
     destroy 
 }

@@ -7,4 +7,4 @@ app.listen(port, () => {
     console.log(`http://localhost:${port}`);
 });
 
-app.use('api/v1/posts', postsRouter)
+app.use('/api/v1/posts', postsRouter)

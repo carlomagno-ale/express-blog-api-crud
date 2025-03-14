@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router();
-const postController = require('../controllers/postController');
+
+const postController = require('../controllers/postController.js');
 
 // index
 router.get('/', postController.index);
@@ -15,10 +16,9 @@ router.post('/', postController.store);
 router.put('/:id', postController.update);
 
 //update/modify 
-router.patch('/:id', /*postController.modify*/);
+router.patch('/:id', postController.modify);
 
 //delete
 router.delete('/:id', postController.destroy );
-
 
 module.exports = router;
