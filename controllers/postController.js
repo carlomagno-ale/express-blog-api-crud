@@ -4,9 +4,8 @@ function index(req, res) {
     res.json(posts);
 }
 function show(req, res) {
-    // recuperiamo l'id dall' URL e trasformiamolo in numero
-    const  slug = parseInt(req.params.slug)
-    // cerchiamo tramite id
+    const slug = req.params.slug
+    // cerchiamo 
     const postSingle = posts.find(postSingle => postSingle.slug === slug);
     // Restituiamolo sotto forma di JSON
     res.json(postSingle);
@@ -23,10 +22,11 @@ function modify(req, res) {
 }
 
 function destroy(req, res) {
-    // recuperiamo l'id dall' URL e trasformiamolo in numero
-    const slug = parseInt(req.params.slug)
-    // cerchiamo tramite id
+
+    const slug = req.params.slug;
+
     const postSingle = posts.find(postSingle => postSingle.slug === slug);
+
     // controllo
     if (!postSingle) {
         res.status(404);
