@@ -5,9 +5,9 @@ function index(req, res) {
 }
 function show(req, res) {
     // recuperiamo l'id dall' URL e trasformiamolo in numero
-    const id = parseInt(req.params.id)
+    const  slug = parseInt(req.params.slug)
     // cerchiamo tramite id
-    const postSingle = posts.find(postSingle => postSingle.id === id);
+    const postSingle = posts.find(postSingle => postSingle.slug === slug);
     // Restituiamolo sotto forma di JSON
     res.json(postSingle);
 }
@@ -15,18 +15,18 @@ function store(req, res) {
     res.send('crea un nuovo post')
 }
 function update(req, res) {
-    res.send(`modifica totalemnte un post con id:${req.params.id}`)
+    res.send(`modifica totalemnte un post con id:${req.params.slug}`)
 }
 
 function modify(req, res) {
-    res.send(`modifica parzialmente un post con id ${req.params.id}`)
+    res.send(`modifica parzialmente un post con id ${req.params.slug}`)
 }
 
 function destroy(req, res) {
     // recuperiamo l'id dall' URL e trasformiamolo in numero
-    const id = parseInt(req.params.id)
+    const slug = parseInt(req.params.slug)
     // cerchiamo tramite id
-    const postSingle = posts.find(postSingle => postSingle.id === id);
+    const postSingle = posts.find(postSingle => postSingle.slug === slug);
     // controllo
     if (!postSingle) {
         res.status(404);

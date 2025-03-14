@@ -7,18 +7,18 @@ const postController = require('../controllers/postController.js');
 router.get('/', postController.index);
 
 //show
-router.get('/:id', postController.show);
+router.get('/:slug', postController.show);
 
 //create/store
 router.post('/', postController.store);
 
 //update
-router.put('/:id', postController.update);
+router.put('/:slug', postController.update);
 
 //update/modify 
-router.patch('/:id', postController.modify);
+router.patch('/:slug', postController.modify);
 
 //delete
-router.delete('/:id', postController.destroy );
+router.delete('/:slug', postController.destroy );
 
 module.exports = router;
