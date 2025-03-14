@@ -1,7 +1,7 @@
-
+const posts = require('../data/posts-data'); 
 
 function index(req, res) {
-    res.send('visualizza tutti i post');
+    res.json(posts);
 }
 function show(req, res) {
     res.send(`visualizza solo i post con id:${req.params.id}`)
