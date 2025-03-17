@@ -16,7 +16,7 @@ function show(req, res) {
             message: "post non trovato"
         })
     }
-    
+
     res.json(postSingle);
 }
 function store(req, res) {
@@ -69,7 +69,33 @@ function update(req, res) {
 }
 
 function modify(req, res) {
-    res.send(`modifica parzialmente un post con id ${req.params.slug}`)
+    
+    // recuperiamo lo slug 
+    const slug = req.params.slug
+    // cerchiamo tramite lo slug
+    const postSingle = posts.find(postSingle => postSingle.slug === slug);
+    // Piccolo controllo
+    if (!postSingle) {
+        res.status(404);
+        return res.json({
+            error: "Not Found",
+            message: "post non trovato"
+        })
+    }
+    // Aggiorniamo
+  
+    postSingle.title = req.body.title,
+    postSingle.slug = req.body.title.toLowerCase().replace(/ /, '-'),
+    postSingle.content = req.body.content,
+    postSingle.image = req.body.image,
+    postSingle.tags = req.body.tags
+
+    // Controlliamo 
+    console.log(posts)
+    // post aggiornato
+    res.json(postSingle);
+
+    //res.send(`modifica parzialmente un post con id ${req.params.slug}`)
 }
 
 function destroy(req, res) {
