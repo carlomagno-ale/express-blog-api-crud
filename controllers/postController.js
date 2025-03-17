@@ -11,13 +11,11 @@ function show(req, res) {
     res.json(postSingle);
 }
 function store(req, res) {
-
-    const newSlug= posts[posts.length - 1].slug + 1;
     
     // Creiamo un nuovo oggetto 
     const newPost = {
         title: req.body.title,
-        slug: newSlug,
+        slug: req.body.slug,
         content: req.body.content,
         image: req.body.image,
         tags: req.body.tags
