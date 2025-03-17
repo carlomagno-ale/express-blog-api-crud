@@ -33,6 +33,7 @@ function store(req, res) {
     res.send('crea un nuovo post')*/
 }
 function update(req, res) {
+
     // recuperiamo lo slug 
     const slug = req.params.slug
     // cerchiamo tramite lo slug
@@ -46,9 +47,9 @@ function update(req, res) {
         })
     }
     // Aggiorniamo
-
+  
     postSingle.title = req.body.title,
-    postSingle.slug = req.body.slug,
+    postSingle.slug = req.body.title.toLowerCase().replace(/ /g, '-'),
     postSingle.content = req.body.content,
     postSingle.image = req.body.image,
     postSingle.tags = req.body.tags
