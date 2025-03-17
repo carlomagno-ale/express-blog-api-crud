@@ -1,7 +1,16 @@
 const posts = require('../data/posts-data');
 
 function index(req, res) {
+    
+    const tag = req.query.tag;
+
+    if (tag) {
+        const filteredPosts = posts.filter(post => post.tags.includes(tag));
+        return res.json(filteredPosts);
+    }
+
     res.json(posts);
+
 }
 function show(req, res) {
     const slug = req.params.slug
@@ -55,12 +64,12 @@ function update(req, res) {
         })
     }
     // Aggiorniamo
-  
+
     postSingle.title = req.body.title,
-    postSingle.slug = req.body.title.toLowerCase().replace(/ /g, '-'),
-    postSingle.content = req.body.content,
-    postSingle.image = req.body.image,
-    postSingle.tags = req.body.tags
+        postSingle.slug = req.body.title.toLowerCase().replace(/ /g, '-'),
+        postSingle.content = req.body.content,
+        postSingle.image = req.body.image,
+        postSingle.tags = req.body.tags
 
     // Controlliamo 
     console.log(posts)
@@ -69,7 +78,7 @@ function update(req, res) {
 }
 
 function modify(req, res) {
-    
+
     // recuperiamo lo slug 
     const slug = req.params.slug
     // cerchiamo tramite lo slug
@@ -83,12 +92,12 @@ function modify(req, res) {
         })
     }
     // Aggiorniamo
-  
+
     postSingle.title = req.body.title,
-    postSingle.slug = req.body.title.toLowerCase().replace(/ /, '-'),
-    
-    // Controlliamo 
-    console.log(posts)
+        postSingle.slug = req.body.title.toLowerCase().replace(/ /, '-'),
+
+        // Controlliamo 
+        console.log(posts)
     // post aggiornato
     res.json(postSingle);
 
