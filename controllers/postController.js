@@ -86,10 +86,7 @@ function modify(req, res) {
   
     postSingle.title = req.body.title,
     postSingle.slug = req.body.title.toLowerCase().replace(/ /, '-'),
-    postSingle.content = req.body.content,
-    postSingle.image = req.body.image,
-    postSingle.tags = req.body.tags
-
+    
     // Controlliamo 
     console.log(posts)
     // post aggiornato
