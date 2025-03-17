@@ -11,7 +11,7 @@ function show(req, res) {
     res.json(postSingle);
 }
 function store(req, res) {
-    
+
     // Creiamo un nuovo oggetto 
     const newPost = {
         title: req.body.title,
@@ -33,7 +33,30 @@ function store(req, res) {
     res.send('crea un nuovo post')*/
 }
 function update(req, res) {
-    res.send(`modifica totalemnte un post con id:${req.params.slug}`)
+    // recuperiamo lo slug 
+    const slug = req.params.slug
+    // cerchiamo tramite lo slug
+    const postSingle = posts.find(postSingle => postSingle.slug === slug);
+    // Piccolo controllo
+    if (!postSingle) {
+        res.status(404);
+        return res.json({
+            error: "Not Found",
+            message: "post non trovato"
+        })
+    }
+    // Aggiorniamo
+
+    postSingle.title = req.body.title,
+    postSingle.slug = req.body.slug,
+    postSingle.content = req.body.content,
+    postSingle.image = req.body.image,
+    postSingle.tags = req.body.tags
+
+    // Controlliamo 
+    console.log(posts)
+    // post aggiornato
+    res.json(postSingle);
 }
 
 function modify(req, res) {
@@ -55,7 +78,7 @@ function destroy(req, res) {
             message: "post non trovato"
         })
     }
-    // Rimuoviamo il post dal menu
+    // Rimuoviamo il post
     posts.splice(posts.indexOf(postSingle), 1);
     // Restituiamo lo status corretto
     res.sendStatus(204)
