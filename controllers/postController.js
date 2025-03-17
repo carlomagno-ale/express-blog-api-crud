@@ -8,6 +8,15 @@ function show(req, res) {
     // cerchiamo 
     const postSingle = posts.find(postSingle => postSingle.slug === slug);
     // Restituiamolo sotto forma di JSON
+
+    if (!postSingle) {
+        res.status(404);
+        return res.json({
+            error: "Not Found",
+            message: "post non trovato"
+        })
+    }
+    
     res.json(postSingle);
 }
 function store(req, res) {
@@ -27,7 +36,6 @@ function store(req, res) {
     // Restituiamo lo status corretto + il post creato
     res.status(201);
     res.json(newPost);
-
 
     /*console.log(req.body);
     res.send('crea un nuovo post')*/
