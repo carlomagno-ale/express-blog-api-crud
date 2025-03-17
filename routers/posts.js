@@ -9,7 +9,7 @@ router.get('/', postController.index);
 //show
 router.get('/:slug', postController.show);
 
-//create/store
+//store
 router.post('/', postController.store);
 
 //update

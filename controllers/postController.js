@@ -11,7 +11,28 @@ function show(req, res) {
     res.json(postSingle);
 }
 function store(req, res) {
-    res.send('crea un nuovo post')
+
+    const newSlug= posts[posts.length - 1].slug + 1;
+    
+    // Creiamo un nuovo oggetto 
+    const newPost = {
+        title: req.body.title,
+        slug: newSlug,
+        content: req.body.content,
+        image: req.body.image,
+        tags: req.body.tags
+    }
+    // Aggiungiamo 
+    posts.push(newPost);
+    // controlliamo
+    console.log(posts);
+    // Restituiamo lo status corretto + il post creato
+    res.status(201);
+    res.json(newPost);
+
+
+    /*console.log(req.body);
+    res.send('crea un nuovo post')*/
 }
 function update(req, res) {
     res.send(`modifica totalemnte un post con id:${req.params.slug}`)
